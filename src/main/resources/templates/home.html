@@ -9,13 +9,15 @@
     <title>Taming Thymeleaf</title>
 </head>
 <body>
-<h1 th:text="${pageTitle}">Taming Thymeleaf</h1>
+<h1 th:text="${pageTitle}" class="text-4xl mx-4 mb-4 border-b-4 border-green-700"
+>Taming Thymeleaf</h1>
 <div>
     <ul>
         <li th:each="scientist : ${scientists}">
             <span th:text="${scientist}"></span>
         </li>
     </ul>
+    <span>Scientist</span>
 </div>
 
 </body>

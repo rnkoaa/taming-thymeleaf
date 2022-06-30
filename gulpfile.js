@@ -19,21 +19,22 @@ gulp.task('watch', () => {
 
 gulp.task('copy-html', () =>
     gulp.src(['src/main/resources/**/*.html'])
-        .pipe(gulp.dest('target/classes/'))
+        .pipe(gulp.dest('build/resources/main'))
 );
 
+// build/resources/main/static/css
 gulp.task('copy-css', () =>
     gulp.src(['src/main/resources/**/*.css'])
         .pipe(postcss())
         .pipe(production(uglifycss()))
-        .pipe(gulp.dest('target/classes/'))
+        .pipe(gulp.dest('build/resources/main'))
 );
 
 gulp.task('copy-js', () =>
     gulp.src(['src/main/resources/**/*.js'])
         .pipe(babel())
         .pipe(production(terser()))
-        .pipe(gulp.dest('target/classes/'))
+        .pipe(gulp.dest('build/resources/main'))
 );
 
 // When the HTML changes, we need to copy the CSS also because

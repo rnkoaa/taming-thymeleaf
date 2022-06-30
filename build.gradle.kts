@@ -1,5 +1,7 @@
+import com.github.gradle.node.npm.task.NpmTask
 import com.github.gradle.node.npm.task.NpxTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     id("org.springframework.boot") version "2.7.1"
@@ -33,12 +35,41 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+tasks.withType<BootRun> {
+    println("Building Jar")
+    dependsOn(":run-gulp-build")
+}
+
+tasks.withType<Jar> {
+    println("Building Jar")
+    dependsOn(":run-gulp-build")
+}
+//tasks.register<Copy>("copyReport") {
+//    from(layout.buildDirectory.dir("reports/my-report.pdf"))
+//    into(layout.buildDirectory.dir("toArchive"))
+//}
+
+tasks.withType<ProcessResources> {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//    exclude("**/*.html")
+    exclude("**/*.css")
+    exclude("**/*.js")
+//    exclude { details: FileTreeElement ->
+//        details.file.name.endsWith(".html") &&
+//                details.file.readText().contains("DRAFT")
+//    }
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
 
 val npmInstall by tasks.npmInstall
-tasks.register<NpxTask>("runNpx") {
-    dependsOn(npmInstall)
-//    println("running npm task")
+
+tasks.register<NpmTask>("run-gulp-build") {
+    args.addAll("run", "build")
+}
+
+tasks.register<NpmTask>("run-gulp-build-prod") {
+    args.addAll("run", "build-prod")
 }
