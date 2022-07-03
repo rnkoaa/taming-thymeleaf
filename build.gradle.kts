@@ -1,5 +1,4 @@
 import com.github.gradle.node.npm.task.NpmTask
-import com.github.gradle.node.npm.task.NpxTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.run.BootRun
 
@@ -26,9 +25,18 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
+    implementation("jakarta.inject:jakarta.inject-api:2.0.1")
     implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0")
 
+    implementation("com.github.javafaker:javafaker:1.0.2") {
+        exclude(group = "org.yaml", module = "snakeyaml")
+    }
+    implementation("org.yaml:snakeyaml:1.30") {
+        exclude(group = "org.yaml", module = "snakeyaml")
+    }
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.assertj:assertj-core:3.23.1")
 }
 
 tasks.withType<KotlinCompile> {
@@ -39,7 +47,6 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks.withType<BootRun> {
-    println("Building Jar")
     dependsOn(":run-gulp-build")
 }
 
@@ -54,13 +61,8 @@ tasks.withType<Jar> {
 
 tasks.withType<ProcessResources> {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-//    exclude("**/*.html")
     exclude("**/*.css")
     exclude("**/*.js")
-//    exclude { details: FileTreeElement ->
-//        details.file.name.endsWith(".html") &&
-//                details.file.readText().contains("DRAFT")
-//    }
 }
 
 tasks.withType<Test> {

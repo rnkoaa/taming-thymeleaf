@@ -7,7 +7,7 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 <head>
-    <title>Users</title>
+    <title th:text="#{users.title}">Users</title>
 </head>
 <body>
 <div layout:fragment="page-content">
@@ -16,7 +16,34 @@
     </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div class="py-4">
-            <span>TODO show list of users</span>
+            <div class="flex flex-col">
+
+                <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8  lg:px-8">
+                    <div class="align-middle inline-block min-w-full shadow overflow-hidden rounded-md sm:rounded-lg border-b border-gray-200">
+                        <table class="min-w-full">
+                            <thead>
+                            <tr>
+                                <th th:replace="fragments/table :: header(#{user.name})"></th>
+                                <th th:replace="fragments/table :: header(#{user.gender})"></th>
+                                <th th:replace="fragments/table :: header(#{user.birthday})"></th>
+                                <th th:replace="fragments/table :: header(#{user.email})"></th>
+                                <th th:replace="fragments/table :: header('')"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="bg-white" th:each="user : ${userPage.data}">
+                                <td th:replace="fragments/table ::data(contents=${user.userName.fullName},primary=true)"></td>
+                                <td th:replace="fragments/table :: data(${user.gender.toString()})"></td>
+                                <td th:replace="fragments/table :: data(${user.birthDate})"></td>
+                                <td th:replace="fragments/table :: data(${user.email.toString()})"></td>
+                                <td th:replace="fragments/table :: dataWithLink(#{edit}, '#')"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div th:replace="fragments/pagination :: controls(page=${userPage})"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

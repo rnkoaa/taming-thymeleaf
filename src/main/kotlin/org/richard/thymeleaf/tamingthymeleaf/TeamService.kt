@@ -2,9 +2,6 @@ package org.richard.thymeleaf.tamingthymeleaf
 
 import org.springframework.stereotype.Service
 
-data class Team(val id: String, val name: String)
-data class Player(val id: String, val name: String)
-
 @Service
 class TeamService {
 
