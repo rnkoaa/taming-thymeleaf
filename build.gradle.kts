@@ -26,8 +26,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-    // webjars
-    implementation("org.webjars.npm:bootstrap-icons:1.8.3")
+    implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

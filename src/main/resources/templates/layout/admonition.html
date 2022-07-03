@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="en"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+<body>
+<!--/*@thymesVar id="type" type="java.lang.String"*/-->
+<div layout:fragment="admonition(type)" class="flex mb-4 p-2 w-2/4"
+     th:classappend="${type == 'NOTE'?'bg-yellow-100':'bg-blue-100'}">
+    <div th:text="${type}" class="mr-4"></div>
+    <div layout:fragment="message"></div>
+</div>
+</body>
+</html>
