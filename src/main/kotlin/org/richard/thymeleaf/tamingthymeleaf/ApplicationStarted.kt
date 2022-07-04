@@ -1,5 +1,7 @@
 package org.richard.thymeleaf.tamingthymeleaf;
 
+import org.richard.thymeleaf.tamingthymeleaf.user.UserGeneratorService
+import org.richard.thymeleaf.tamingthymeleaf.user.UserService
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component

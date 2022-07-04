@@ -1,4 +1,4 @@
-package org.richard.thymeleaf.tamingthymeleaf;
+package org.richard.thymeleaf.tamingthymeleaf.user;
 
 import com.github.javafaker.Faker
 import org.springframework.stereotype.Component;

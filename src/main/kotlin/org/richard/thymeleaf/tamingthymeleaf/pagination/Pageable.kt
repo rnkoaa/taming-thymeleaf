@@ -1,4 +1,4 @@
-package org.richard.thymeleaf.tamingthymeleaf
+package org.richard.thymeleaf.tamingthymeleaf.pagination
 
 interface Pageable {
     fun getNumber(): Int

@@ -1,4 +1,4 @@
-package org.richard.thymeleaf.tamingthymeleaf
+package org.richard.thymeleaf.tamingthymeleaf.pagination
 
 import kotlin.math.ceil
 

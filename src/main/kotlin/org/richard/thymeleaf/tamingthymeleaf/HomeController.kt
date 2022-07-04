@@ -10,12 +10,5 @@ class HomeController {
     @GetMapping("/")
     fun home(model: Model): String {
         return "redirect:/users"
-//        model.addAttribute("pageTitle", "Taming Thymeleaf")
-//        model.addAttribute(
-//            "scientists", listOf(
-//                "Albert Einstein", "Neils Bohr", "James Clerk Maxwell"
-//            )
-//        )
-//        return "home"
     }
 }

@@ -1,4 +1,4 @@
-package org.richard.thymeleaf.tamingthymeleaf
+package org.richard.thymeleaf.tamingthymeleaf.user
 
 import java.time.LocalDate
 import java.util.*
@@ -18,10 +18,20 @@ data class User(
 }
 
 data class UserId(val value: UUID) {
+
+
     companion object {
         fun newId(): UserId {
             return UserId(UUID.randomUUID())
         }
+
+        fun of(id: String): UserId {
+            return UserId(UUID.fromString(id))
+        }
+    }
+
+    override fun toString(): String {
+        return value.toString()
     }
 
 }
@@ -35,12 +45,14 @@ data class EmailAddress(val value: String) {
 
 enum class Gender {
     MALE,
-    FEMALE;
+    FEMALE,
+    OTHER;
 
     override fun toString(): String {
         return when (this) {
             MALE -> "Male"
             FEMALE -> "Female"
+            OTHER -> "Other"
         }
     }
 }

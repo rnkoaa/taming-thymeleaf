@@ -39,12 +39,4 @@ class TeamController(
         return "teams/info";
     }
 
-    @PostMapping("/{id}")
-    fun editTeamName(
-        @PathVariable("id") teamId: String,
-        @ModelAttribute("editTeamFormData") formData: EditTeamFormData
-    ): String {
-        teamService.changeTeamName(teamId, formData.teamName);
-        return "redirect:/teams/all";
-    }
 }

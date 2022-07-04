@@ -1,4 +1,4 @@
-package org.richard.thymeleaf.tamingthymeleaf
+package org.richard.thymeleaf.tamingthymeleaf.pagination
 
 class PageRequest(private val page: Int, private val limit: Int) : Pageable {
 

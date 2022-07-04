@@ -1,5 +1,8 @@
-package org.richard.thymeleaf.tamingthymeleaf
+package org.richard.thymeleaf.tamingthymeleaf.user
 
+import org.richard.thymeleaf.tamingthymeleaf.pagination.Page
+import org.richard.thymeleaf.tamingthymeleaf.pagination.PageResults
+import org.richard.thymeleaf.tamingthymeleaf.pagination.Pageable
 import org.springframework.stereotype.Service
 
 @Service

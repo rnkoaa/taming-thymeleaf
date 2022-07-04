@@ -1,8 +1,11 @@
-package org.richard.thymeleaf.tamingthymeleaf
+package org.richard.thymeleaf.tamingthymeleaf.pagination
 
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.richard.thymeleaf.tamingthymeleaf.pagination.PageRequest
+import org.richard.thymeleaf.tamingthymeleaf.pagination.PageResults
+import org.richard.thymeleaf.tamingthymeleaf.user.UserGeneratorService
 
 class PageResultsTest(
 ) {
