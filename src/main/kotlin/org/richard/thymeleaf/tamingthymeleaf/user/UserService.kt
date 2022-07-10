@@ -41,10 +41,12 @@ class UserService {
         val lastIndex = startIndex + limit
 
         try {
-            val pagedData = users.values.toList()
+            val pagedData = users.values.filter {
+                it.userName.firstName.isNotEmpty() && it.userName.lastName.isNotEmpty()
+            }.toList()
                 .slice(startIndex until lastIndex)
             return PageResults(pagedData, users.size, page)
-        }catch (e: IndexOutOfBoundsException) {
+        } catch (e: IndexOutOfBoundsException) {
             return PageResults(emptyList(), users.size, page)
         }
 

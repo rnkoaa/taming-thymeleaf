@@ -11,17 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
-import javax.validation.ConstraintViolationException
 import javax.validation.Valid
-import javax.validation.Validator
 
 
 @Controller
 @RequestMapping("/users")
-@Validated
-class UserController(
+open class UserController(
     val userService: UserService,
-    val validator: Validator
 ) {
 
     @GetMapping
@@ -32,36 +28,25 @@ class UserController(
     ): String? {
         println("Page: $page and limit: $limit")
         val pageable = PageRequest.of(page, limit)
-//        val users = userService.findAll()
         model.addAttribute("userPage", userService.find(pageable))
         return "users/index"
     }
 
+    // https://github.com/JahnelGroup/spring-boot-samples/blob/master/spring-boot-api-error/src/main/kotlin/com/example/api/errors/WebApiExceptionHandler.kt
     @PostMapping("/create")
-    fun createUserForm(
-        @Valid @ModelAttribute("user") formData: CreateUserFormData,
+    open fun createUserForm(
+        @ModelAttribute("user") @Valid user: CreateUserFormData,
         bindingResult: BindingResult
     ): String {
-        val violations = validator.validate(formData)
-        println("First Name: empty -> ${formData.firstName?.isEmpty()}")
-        println("Last Name: empty -> ${formData.lastName?.isEmpty()}")
-        if (violations.isNotEmpty()) {
-            for (violation in violations) {
-                println(violation.message)
-//                throw ConstraintViolationException(violation.messag)
-            }
-        }
-//        if(formData.birthday.isEmpty()) {
-//            val error = FieldError("birthday", "birthday","birthday cannot be empty")
-//           bindingResult.addError(error)
-//        }
+        println("First Name: empty -> ${user.firstName?.isEmpty()}")
+        println("Last Name: empty -> ${user.lastName?.isEmpty()}")
         if (bindingResult.hasErrors()) {
 //            model.addAttribute("genders", listOf(Gender.MALE, Gender.FEMALE, Gender.OTHER));
             return "users/edit";
         }
 
         println("There are no errors")
-        userService.save(formData.toUser());
+        userService.save(user.toUser());
         return "redirect:/users";
     }
 
@@ -84,7 +69,7 @@ class UserController(
         bindingResult: BindingResult,
         model: Model,
     ): String {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "users/edit";
         }
         val userId = UserId.of(id)

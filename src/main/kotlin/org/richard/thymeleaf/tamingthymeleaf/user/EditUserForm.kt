@@ -2,7 +2,7 @@ package org.richard.thymeleaf.tamingthymeleaf.user
 
 import java.util.UUID
 
-class EditUserForm : CreateUserFormData() {
+open class EditUserForm : CreateUserFormData() {
     var id: UUID? = null
     var version: Int = 0
 

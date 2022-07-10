@@ -1,40 +1,39 @@
 package org.richard.thymeleaf.tamingthymeleaf.user
 
-import org.springframework.validation.annotation.Validated
 import java.time.LocalDate
-import javax.validation.constraints.NotEmpty
-import javax.validation.constraints.NotNull
-import javax.validation.constraints.Size
+import javax.validation.constraints.NotBlank
 
 //@Validated
-open class CreateUserFormData(
-    @NotNull
-    @NotEmpty(message = "first name cannot be null or empty")
-    @Size(min = 2, max = 200, message = "first name must be at least 2 characters")
-    var firstName: String? = null,
+open class CreateUserFormData {
 
-    @NotNull
-    @NotEmpty(message = "last name cannot be null or empty")
-    @Size(min = 2, max = 200, message = "first name must be at least 2 characters")
-    var lastName: String? = null,
+    //    @field:Size(min = 2, max = 200, message = "first name must be at least 2 characters")
+//    @field:NotBlank(message = "first name cannot be null or empty")
+    @NotBlank(message = "first name cannot be null or empty")
+    @field:NotBlank(message = "first name cannot be null or empty")
+    var firstName: String? = null
 
-//    @NotEmpty
+    //    @field:Size(min = 2, max = 200, message = "first name must be at least 2 characters")
+//    @field:NotBlank(message = "last name cannot be null or empty")
+    @field:NotBlank(message = "last name cannot be null or empty")
+    var lastName: String? = null
+
+    //    @NotEmpty
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    var birthday: String? = "",
+    var birthday: String? = ""
 
-//    @NotBlank
+    //    @NotBlank
 //    @NotEmpty
-    var gender: String? = "",
+    var gender: String? = ""
 
-//    @NotBlank
+    //    @NotBlank
 //    @NotEmpty
 //    @Email
-    var email: String? = "",
+    var email: String? = ""
 
-//    @NotEmpty
+    //    @NotEmpty
 //    @Pattern(regexp = "[0-9.\\-() x/+]+")
     var phoneNumber: String? = ""
-) {
+
     fun toUser(): User {
         val g = when (gender) {
             "Male", "male", "MALE" -> Gender.MALE
